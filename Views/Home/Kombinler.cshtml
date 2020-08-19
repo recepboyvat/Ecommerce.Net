@@ -1,0 +1,177 @@
+﻿@using Recepboyvat.ECommerceMVCWeb.Models;
+@model IEnumerable<ProductModel>
+@{
+    ViewBag.Title = "Kombinler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+        crossorigin="anonymous"></script>
+
+
+<div class="container pb-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img class="img-fluid rounded" id="genelresim" style="width:80%;height:600px;">
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="row">
+                    
+
+                    <div class="col-md-12">
+                        <h1>Tshirtler</h1>
+
+                        @foreach (var tshirt in Model)
+{
+    if (tshirt.CategoryId == 7 && tshirt.CombinationNumber == 1)
+    {
+                                <img class="tshirtsec" id="@tshirt.Id" style="width:22%;height:140px;border:1px solid black;" src="~/Upload/@tshirt.Image" />                   
+
+    }
+
+}
+       
+
+                        <br />
+                    </div>
+                    <div class="col-md-12">
+                        <h1>Pantolonlar</h1>
+                        
+                            @foreach (var pantolon in Model)
+{
+    if (pantolon.CategoryId == 8 && pantolon.CombinationNumber == 1)
+    {
+
+
+                                     <img class="pantolonsec" id="@pantolon.Id" style="width:22%;height:140px;border:1px solid black;" src="~/Upload/@pantolon.Image" />
+
+    }
+}
+                        
+                        <br />
+
+                    </div>
+                    <div class="col-md-12">
+                        <h1>Ayakkabilar</h1>
+
+                        @foreach (var ayakkabi in Model)
+{
+    if (ayakkabi.CategoryId == 6 && ayakkabi.CombinationNumber == 1)
+    {
+                                <img class="ayakkabisec" id="@ayakkabi.Id" style="width:22%; height:140px; border:1px solid black;" src="~/Upload/@ayakkabi.Image" />
+    }
+}
+                        <br />
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-success mt-3" style="float:right;" id="kombinekle">Kombini Ekle</button>
+
+            </div>
+        </div>
+      
+        
+      @*  <div class="row mt-2" style="display:inline-block; width:22%;">
+
+            @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                @Html.Hidden("Id", 0)
+                <button type="submit" class="btn btn-success">
+                   
+                </button>
+
+            }
+            @using (Html.BeginForm("AddToCart2", "Cart"))
+            {
+                @Html.Hidden("Id2", 0)
+                <button type="submit" class="btn btn-success">
+                   
+                </button>
+
+            }
+            @using (Html.BeginForm("AddToCart3", "Cart"))
+            {
+                @Html.Hidden("Id3", 0)
+                <button type="submit" name="gonder" class="btn btn-success">
+                   
+                </button>
+            }
+            @if(Request.Form["gonder"]!=null&&Request.Form["gonder2"]!=null&&Request.Form["gonder3"]!=null)
+            {
+
+            }
+
+         
+
+
+
+
+
+
+
+
+        </div>
+        
+           *@
+
+    </div>
+
+
+
+</div>
+<script>
+
+    $(function () {
+        var tshirtId = "";
+        var pantolonId = "";
+        var ayakkabiId = "";
+        
+        $('.tshirtsec').click(function () {
+
+            tshirtId = "t"+$(this).attr("id");
+            $('.tshirtsec').css('border', "none");
+            $(this).css('border', "2px solid red");
+            console.log(tshirtId);
+        
+            $('#Id').val(tshirtId);
+
+        });
+        $('.pantolonsec').click(function () {
+
+            pantolonId ="p"+ $(this).attr("id");
+            $('.pantolonsec').css('border', "none");
+            $(this).css('border', "2px solid red");
+            console.log(pantolonId);
+           $('#Id2').val(pantolonId);
+
+        });
+        $('.ayakkabisec').click(function () {
+
+            ayakkabiId = "a"+$(this).attr("id");
+            $('.ayakkabisec').css('border', "none");
+            $(this).css('border', "2px solid red");
+            console.log(ayakkabiId);
+            var toplam = "/Upload/" + tshirtId.toString() + pantolonId.toString() + ayakkabiId.toString() + ".jpg";
+            console.log(toplam);
+            $("#genelresim").attr('src', toplam)
+            $('#Id3').val(ayakkabiId);
+   
+        });
+      
+    
+       
+        
+
+   
+    });
+
+
+
+</script>
+
+
+
+
+

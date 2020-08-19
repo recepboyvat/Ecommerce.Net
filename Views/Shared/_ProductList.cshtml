@@ -1,0 +1,27 @@
+﻿@using Recepboyvat.ECommerceMVCWeb.Models;
+@model IEnumerable<ProductModel>
+
+<div class="row">
+
+    @foreach (var urun in Model) 
+    {<div class="col-md-4 mb-5">
+            <div class="card">
+                <img src="~/Upload/@urun.Image" class="card-img-top" alt="@urun.Name" style="height:480px;">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="/Home/Details/@urun.Id">@urun.Name</a></h5>
+                    <p class="card-text pt-2 description">@urun.Description</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted product-price">
+                    <i class="fa fa-try" aria-hidden="true"></i>
+                    @urun.Price</small>
+                    <a href="/Home/Details/@urun.Id" class="btn btn-default btn-sm float-right">
+                        Ürünü İncele
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

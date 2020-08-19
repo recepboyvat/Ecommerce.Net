@@ -1,0 +1,104 @@
+﻿@model Recepboyvat.ECommerceMVCWeb.Models.OrderDetailsModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <h2>Sipariş Detay Bilgileri</h2>
+            <hr />
+
+
+            <dl class="row">
+
+                <dt class="col-sm-3">Order State</dt>
+                <dd class="col-sm-9">@Model.OrderState</dd>
+
+                <dt class="col-sm-3">Order Id</dt>
+                <dd class="col-sm-9">@Model.OrderId</dd>
+
+                <dt class="col-sm-3">Order Number</dt>
+                <dd class="col-sm-9">@Model.OrderNumber</dd>
+
+                <dt class="col-sm-3">Total</dt>
+                <dd class="col-sm-9">@Model.Total</dd>
+
+
+                <dt class="col-sm-3">Order Date</dt>
+                <dd class="col-sm-9">@Model.OrderDate</dd>
+
+
+
+
+
+
+                <dt class="col-sm-3">Adres</dt>
+                <dd class="col-sm-9">
+                    @Model.AdresBasligi
+                    <hr />
+                    @Model.Adres
+                    <br />
+                    @Model.Sehir-@Model.Ilce-@Model.Mahalle
+                    <br />
+                    @Model.PostaKodu
+
+                </dd>
+
+                <dt class="col-sm-3">Products</dt>
+                <dd class="col-sm-9"></dd>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th></th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.OrderLines)
+                        {
+                        <tr>
+                            <td>
+                                <img style="width:70px;height:auto;" src="~/Upload/@item.Image" />
+                            </td>
+                            <td>
+                                @item.ProductName
+                            </td>
+                            <td>
+                                @item.Quantity
+                            </td>
+                            <td>
+                                @item.Price
+                            </td>
+                            <td>
+                                <a href="/Home/Details/@item.ProductId" class="btn btn-sm btn-primary" target="_blank">Product Details</a>
+                                <i class="fa fa-angle-doubke-right" aria-hidden="true"></i>
+                            </td>
+
+                        </tr>
+                        }
+                    </tbody>
+
+
+
+                </table>
+
+
+            </dl>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
